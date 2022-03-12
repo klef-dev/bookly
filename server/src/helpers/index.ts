@@ -1,5 +1,6 @@
 import logger from 'pino';
 import dayjs from 'dayjs';
+import axios from 'axios';
 
 const log = logger({
   prettyPrint: true,
@@ -8,4 +9,10 @@ const log = logger({
   timestamp: () => `"time": "${dayjs().format()}"`,
 });
 
-export { log };
+// configure google book api
+const googleBookApi = axios.create({
+  baseURL: 'https://www.googleapis.com/books/v1',
+  timeout: 5000,
+});
+
+export { log, googleBookApi };

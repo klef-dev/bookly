@@ -11,6 +11,7 @@
 	"license": "MIT",
 	"dependencies": {
 		"apicache": "^1.6.3",
+		"axios": "^0.26.1",
 		"cors": "^2.8.5",
 		"dayjs": "^1.10.8",
 		"debug": "^4.1.1",
