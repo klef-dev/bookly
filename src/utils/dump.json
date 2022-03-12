@@ -1,0 +1,26 @@
+[
+    {
+        "title":"Book1",
+        "image":"",
+        "ratings":5,
+        "pages":300,
+        "year":"2022",
+        "publisher":"Publisher",
+        "authors":"Authur",
+        "categories":"Category1, Category2",
+        "description":"Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur necessitatibus suscipit nostrum excepturi eius adipisci ipsum illum possimus. Odit at dolore maiores. Fugiat, in sapiente? Laborum, eos velit. Voluptate, mollitia."
+
+    },
+    {
+        "title":"Book2",
+        "image":"",
+        "ratings":2,
+        "pages":300,
+        "year":"2022",
+        "publisher":"Publisher",
+        "authors":"Ketch",
+        "categories":"Category1, Category2",
+        "description":"Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur necessitatibus suscipit nostrum excepturi eius adipisci ipsum illum possimus. Odit at dolore maiores. Fugiat, in sapiente? Laborum, eos velit. Voluptate, mollitia."
+        
+    }
+]
