@@ -25,7 +25,7 @@ const Items = ({ items, pagination }: ItemsProps) => {
         )}
       </div>
       <div>
-        <div className="flex list-none justify-end items-center mt-5">
+        <div className="flex list-none justify-center items-center mt-5">
           <button
             onClick={() => pageBackward()}
             disabled={!pagination.prev}
