@@ -4,11 +4,15 @@ import { ItemProps } from '../interfaces/items';
 
 const Item = ({ item }: ItemProps) => {
   return (
-    <div className=" border-b border-b-gray-300 mb-4 py-4">
+    <div
+      className="border-b border-b-gray-300 mb-4 py-4"
+      onClick={() => window.open(item.volumeInfo.previewLink, '_blank')}
+      style={{ cursor: 'pointer' }}
+    >
       <div className="flex">
         <img
           src={item.volumeInfo.imageLinks?.thumbnail}
-          alt=""
+          alt={item.volumeInfo.title}
           className="h-20"
         />
         <div>

@@ -7,7 +7,7 @@ const Items = ({ items, pagination, mutateAsync, isLoading }: ItemsProps) => {
   const [page, setPage] = useState(pagination.currentPage);
   const pageForward = async () => {
     if (page < pagination.totalPages) {
-      await mutateAsync({ offset: page * 10 });
+      await mutateAsync({ offset: page + 1 });
       setPage(page + 1);
     }
   };
@@ -20,7 +20,7 @@ const Items = ({ items, pagination, mutateAsync, isLoading }: ItemsProps) => {
   };
 
   const handlePage = async (page: number) => {
-    await mutateAsync({ offset: page * 10 });
+    await mutateAsync({ offset: page - 1 });
     setPage(page);
   };
 

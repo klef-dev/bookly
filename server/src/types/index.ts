@@ -23,6 +23,7 @@ interface googleAPIResponseDto {
       pageCount?: number;
       publisher?: string;
       publishedDate?: string;
+      previewLink: string;
     };
   }[];
   totalItems: number;

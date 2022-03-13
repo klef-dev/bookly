@@ -12,6 +12,7 @@ export interface ItemParams {
     pageCount?: number;
     publisher?: string;
     publishedDate?: string;
+    previewLink: string;
   };
 }
 

@@ -43,6 +43,7 @@ export class BookController {
             pageCount: volumeInfo?.pageCount,
             publisher: volumeInfo?.publisher,
             publishedDate: volumeInfo?.publishedDate,
+            previewLink: volumeInfo?.previewLink,
           },
         };
       });
