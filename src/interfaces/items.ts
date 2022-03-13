@@ -37,16 +37,7 @@ export interface SearchProps {
 }
 
 export interface FilterProps {
-  updateItems: ({
-    items,
-    totalItems,
-  }: {
-    items: ItemParams[];
-    totalItems: number;
-  }) => {
-    items: ItemParams[];
-    totalItems: number;
-  };
+  handleFiltering: (e: React.FormEvent<HTMLSelectElement>) => void;
 }
 
 export interface PaginationProps {

@@ -1,4 +1,3 @@
-import React from 'react';
 import { SearchProps } from '../interfaces/items';
 
 function SearchBar({ onSearch }: SearchProps) {

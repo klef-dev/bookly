@@ -3,7 +3,7 @@ import { Star } from 'react-feather';
 import { RatingsParams } from '../interfaces/items';
 
 function Ratings({ ratingsCount }: RatingsParams) {
-  const remainingStars = ratingsCount ? Math.floor(5 - ratingsCount) : 5;
+  const remainingStars = ratingsCount ? Math.floor(5 - ratingsCount) : 4;
   return (
     <div className="flex">
       {Array(ratingsCount)

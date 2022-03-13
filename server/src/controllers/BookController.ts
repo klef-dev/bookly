@@ -36,7 +36,7 @@ export class BookController {
             title: volumeInfo.title,
             authors: volumeInfo.authors,
             description: volumeInfo.description,
-            imageLinks: { thumbnail: volumeInfo.imageLinks.thumbnail },
+            imageLinks: { thumbnail: volumeInfo.imageLinks?.thumbnail },
             categories: volumeInfo.categories,
             averageRating: volumeInfo?.averageRating,
             ratingsCount: volumeInfo?.ratingsCount,

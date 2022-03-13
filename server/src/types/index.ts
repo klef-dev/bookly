@@ -15,7 +15,7 @@ interface googleAPIResponseDto {
       authors: string[];
       description: string;
       imageLinks: {
-        thumbnail: string;
+        thumbnail?: string;
       };
       categories: string[];
       averageRating?: number;

@@ -12,6 +12,7 @@ function App() {
     items: [] as ItemParams[],
     totalItems: 0,
   });
+  const [searchTerm, setSearchTerm] = useState('');
 
   const { mutateAsync, data, isLoading } = useMutation((q: string) =>
     apiRequest.get(`/v1?query=${q}`)
@@ -26,33 +27,47 @@ function App() {
     }
   }, [data]);
 
-  const updateItems = ({
-    items,
-    totalItems,
-  }: {
-    items: ItemParams[];
-    totalItems: number;
-  }) => {
-    setState({ ...state, items, totalItems });
-    return { items, totalItems };
-  };
-
   const handleChange = async (e: React.FormEvent<HTMLInputElement>) => {
     const { value } = e.currentTarget;
 
     if (value.length > 2) {
-      mutateAsync(value);
+      setSearchTerm(value);
+      await mutateAsync(value);
+    } else {
+      setState({
+        items: [],
+        totalItems: 0,
+      });
+      setSearchTerm('');
+    }
+  };
+
+  const handleFiltering = async (e: React.FormEvent<HTMLSelectElement>) => {
+    const { value } = e.currentTarget;
+    if (value) {
+      setState({
+        ...state,
+        items: state.items.filter(
+          (item) => item.volumeInfo.ratingsCount === Number(value)
+        ),
+      });
+    } else {
+      setState({
+        ...state,
+        items: data?.data?.items || [],
+      });
     }
   };
 
   return (
     <div className="md:flex md:justify-between pt-28 pb-20 px-28 h-full">
       <div className="md:mr-5 md:w-5/12">
-        <Filter updateItems={updateItems} />
+        <Filter handleFiltering={handleFiltering} />
       </div>
       <div className="w-full bg-white shadow-xl">
         <SearchBar onSearch={handleChange} />
-        <Items {...state} />
+        {isLoading && searchTerm && <p>Loading...</p>}
+        {searchTerm && !isLoading && <Items {...state} />}
       </div>
     </div>
   );
