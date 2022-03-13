@@ -18,11 +18,14 @@ const Item = ({ item }: ItemProps) => {
       </div>
       <div>
         <p className=" font-bold text-2xl">{item.volumeInfo.title}</p>
-        <Ratings averageRating={item?.volumeInfo?.averageRating} />
+        {item.volumeInfo.averageRating && (
+          <Ratings averageRating={item.volumeInfo.averageRating} />
+        )}
         <div className=" text-gray-500 text-sm">
           <p>
-            # {item.volumeInfo.pageCount} <b>.</b>{' '}
-            {item.volumeInfo.publishedDate} <b>.</b> {item.volumeInfo.publisher}
+            # {item.volumeInfo.pageCount || 'No page'} <b>.</b>{' '}
+            {item.volumeInfo.publishedDate || 'No published date'} <b>.</b>{' '}
+            {item.volumeInfo.publisher || 'No publisher'}
           </p>
           <p>{item.volumeInfo.description}</p>
         </div>

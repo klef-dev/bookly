@@ -19,8 +19,16 @@ function App() {
   });
   const [searchTerm, setSearchTerm] = useState('');
 
-  const { mutateAsync, data, isLoading } = useMutation((q: string) =>
-    apiRequest.get(`/v1?query=${q}`)
+  const { mutateAsync, data, isLoading } = useMutation(
+    ({
+      q = searchTerm,
+      limit = 10,
+      offset = 0,
+    }: {
+      q?: string;
+      limit?: number;
+      offset?: number;
+    }) => apiRequest.get(`/v1?query=${q}&limit=${limit}&offset=${offset}`)
   );
 
   useEffect(() => {
@@ -34,7 +42,6 @@ function App() {
           currentPage: data?.data?.currentPage,
         },
       });
-      console.log({ data });
     }
   }, [data]);
 
@@ -43,7 +50,7 @@ function App() {
 
     if (value.length > 2) {
       setSearchTerm(value);
-      await mutateAsync(value);
+      await mutateAsync({ q: value });
     } else {
       setState({
         items: [],
@@ -63,8 +70,8 @@ function App() {
     if (value) {
       setState({
         ...state,
-        items: state.items.filter(
-          (item) => item.volumeInfo.ratingsCount === Number(value)
+        items: data?.data?.items.filter(
+          (item: ItemParams) => item.volumeInfo.averageRating === Number(value)
         ),
       });
     } else {
@@ -82,8 +89,9 @@ function App() {
       </div>
       <div className="w-full bg-white shadow-xl">
         <SearchBar onSearch={handleChange} />
-        {isLoading && searchTerm && <p>Loading...</p>}
-        {searchTerm && !isLoading && <Items {...state} />}
+        {searchTerm && (
+          <Items {...state} mutateAsync={mutateAsync} isLoading={isLoading} />
+        )}
       </div>
     </div>
   );

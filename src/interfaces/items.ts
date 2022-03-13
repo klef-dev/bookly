@@ -30,6 +30,16 @@ export interface PaginationParams {
 export interface ItemsProps {
   items: ItemParams[];
   pagination: PaginationParams;
+  mutateAsync: ({
+    q,
+    limit,
+    offset,
+  }: {
+    q?: string;
+    limit?: number;
+    offset?: number;
+  }) => Promise<any>;
+  isLoading: boolean;
 }
 
 export interface ItemProps {

@@ -7,10 +7,7 @@ function Filter({ handleFiltering }: FilterProps) {
       <select name="" id="" className="w-full p-2" onChange={handleFiltering}>
         <option value="">All stars</option>
         {[...Array(5)].map((_, i) => (
-          <option key={i} value={i + 1}>
-            {' '}
-            {i + 1}{' '}
-          </option>
+          <option key={i}>{i + 1}</option>
         ))}
       </select>
     </div>
