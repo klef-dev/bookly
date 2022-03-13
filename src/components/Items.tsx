@@ -1,16 +1,20 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import Item from './Item';
 import { ItemsProps } from '../interfaces/items';
 import { ChevronLeft, ChevronRight } from 'react-feather';
 
 const Items = ({ items, pagination }: ItemsProps) => {
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(pagination.currentPage);
   const pageForward = () => {
-    setPage(pagination.currentPage + 1);
+    if (page < pagination.totalPages) {
+      setPage(page + 1);
+    }
   };
 
   const pageBackward = () => {
-    setPage(pagination.currentPage - 1);
+    if (page > 1) {
+      setPage(page - 1);
+    }
   };
 
   return (
@@ -28,22 +32,33 @@ const Items = ({ items, pagination }: ItemsProps) => {
         <div className="flex list-none justify-center items-center mt-5">
           <button
             onClick={() => pageBackward()}
-            disabled={!pagination.prev}
+            disabled={page === 1}
             className="bg-indigo-50 border-indigo-500 text-indigo-600 p-2 border"
           >
             <ChevronLeft />
           </button>
           {[...Array(pagination.totalPages)].map((_, i) => (
-            <div
-              key={i}
-              className="bg-indigo-50 border-indigo-500 text-indigo-600 py-2 px-4 border"
-            >
-              {i}
-            </div>
+            <React.Fragment key={i + 1}>
+              {i + 1 <= 2 && i + 1 !== page && (
+                <button className="bg-indigo-50 text-indigo-600 py-2 px-4 border">
+                  {i + 1}
+                </button>
+              )}
+              {i + 1 === page && (
+                <button className="bg-indigo-50 border-indigo-500 text-indigo-600 py-2 px-4 border">
+                  {page}
+                </button>
+              )}
+              {i + 1 >= pagination.totalPages - 1 && i + 1 !== page && (
+                <button className="bg-indigo-50 text-indigo-600 py-2 px-4 border">
+                  {i + 1}
+                </button>
+              )}
+            </React.Fragment>
           ))}
           <button
             onClick={() => pageForward()}
-            disabled={!pagination.next}
+            disabled={page === pagination.totalPages}
             className="bg-indigo-50 border-indigo-500 text-indigo-600 p-2 border"
           >
             <ChevronRight />

@@ -28,13 +28,15 @@ function App() {
       setState({
         ...data?.data,
         pagination: {
-          ...state.pagination,
+          next: data?.data?.totalPages > data?.data?.currentPage,
+          prev: data?.data?.currentPage > 1,
           totalPages: data?.data?.totalPages,
           currentPage: data?.data?.currentPage,
         },
       });
+      console.log({ data });
     }
-  }, [data, state]);
+  }, [data]);
 
   const handleChange = async (e: React.FormEvent<HTMLInputElement>) => {
     const { value } = e.currentTarget;

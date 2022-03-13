@@ -18,12 +18,11 @@ const Item = ({ item }: ItemProps) => {
       </div>
       <div>
         <p className=" font-bold text-2xl">{item.volumeInfo.title}</p>
-        <Ratings ratingsCount={item?.volumeInfo?.ratingsCount} />
+        <Ratings averageRating={item?.volumeInfo?.averageRating} />
         <div className=" text-gray-500 text-sm">
           <p>
             # {item.volumeInfo.pageCount} <b>.</b>{' '}
-            {item.volumeInfo.publishedDate} <b>.</b>{' '}
-            {item.volumeInfo.publisher}
+            {item.volumeInfo.publishedDate} <b>.</b> {item.volumeInfo.publisher}
           </p>
           <p>{item.volumeInfo.description}</p>
         </div>

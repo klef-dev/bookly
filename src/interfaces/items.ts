@@ -16,7 +16,7 @@ export interface ItemParams {
 }
 
 export interface RatingsParams {
-  ratingsCount?: number;
+  averageRating?: number;
 }
 
 export interface PaginationParams {
