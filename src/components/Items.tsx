@@ -1,17 +1,17 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Item from './Item';
 import { ItemsProps } from '../interfaces/items';
-// import { ChevronLeft, ChevronRight } from 'react-feather';
+import { ChevronLeft, ChevronRight } from 'react-feather';
 
-const Items = ({ items }: ItemsProps) => {
-  // const [page, setPage] = useState(1);
-  // const pageForward = () => {
-  //   setPage(pagination.pageNum + 1);
-  // };
+const Items = ({ items, pagination }: ItemsProps) => {
+  const [page, setPage] = useState(1);
+  const pageForward = () => {
+    setPage(pagination.currentPage + 1);
+  };
 
-  // const pageBackward = () => {
-  //   setPage(pagination.pageNum - 1);
-  // };
+  const pageBackward = () => {
+    setPage(pagination.currentPage - 1);
+  };
 
   return (
     <div className="bg-white p-4">
@@ -24,7 +24,7 @@ const Items = ({ items }: ItemsProps) => {
           </p>
         )}
       </div>
-      {/* <div>
+      <div>
         <div className="flex list-none justify-center items-center mt-5">
           <button
             onClick={() => pageBackward()}
@@ -33,9 +33,14 @@ const Items = ({ items }: ItemsProps) => {
           >
             <ChevronLeft />
           </button>
-          <div className="bg-indigo-50 border-indigo-500 text-indigo-600 py-2 px-4 border">
-            {pagination.pageNum}
-          </div>
+          {[...Array(pagination.totalPages)].map((_, i) => (
+            <div
+              key={i}
+              className="bg-indigo-50 border-indigo-500 text-indigo-600 py-2 px-4 border"
+            >
+              {i}
+            </div>
+          ))}
           <button
             onClick={() => pageForward()}
             disabled={!pagination.next}
@@ -44,7 +49,7 @@ const Items = ({ items }: ItemsProps) => {
             <ChevronRight />
           </button>
         </div>
-      </div> */}
+      </div>
     </div>
   );
 };

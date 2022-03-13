@@ -9,6 +9,9 @@ export interface ItemParams {
     categories: string[];
     averageRating?: number;
     ratingsCount?: number;
+    pageCount?: number;
+    publisher?: string;
+    publishedDate?: string;
   };
 }
 
@@ -17,15 +20,16 @@ export interface RatingsParams {
 }
 
 export interface PaginationParams {
+  totalPages: number;
+  currentPage: number;
   next: boolean;
   prev: boolean;
-  pageNum: number;
 }
 
 // COMPONENT PROPS
 export interface ItemsProps {
   items: ItemParams[];
-  // pagination: PaginationParams;
+  pagination: PaginationParams;
 }
 
 export interface ItemProps {

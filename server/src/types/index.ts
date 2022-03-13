@@ -20,7 +20,12 @@ interface googleAPIResponseDto {
       categories: string[];
       averageRating?: number;
       ratingsCount?: number;
+      pageCount?: number;
+      publisher?: string;
+      publishedDate?: string;
     };
   }[];
   totalItems: number;
+  totalPages: number;
+  currentPage: number;
 }

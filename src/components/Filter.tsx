@@ -6,14 +6,12 @@ function Filter({ handleFiltering }: FilterProps) {
       <h4>Star count (1-5)</h4>
       <select name="" id="" className="w-full p-2" onChange={handleFiltering}>
         <option value="">All stars</option>
-        {Array(5)
-          .fill(null)
-          .map((_, i) => (
-            <option key={i} value={i + 1}>
-              {' '}
-              {i + 1}{' '}
-            </option>
-          ))}
+        {[...Array(5)].map((_, i) => (
+          <option key={i} value={i + 1}>
+            {' '}
+            {i + 1}{' '}
+          </option>
+        ))}
       </select>
     </div>
   );

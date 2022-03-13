@@ -3,14 +3,19 @@ import { useEffect, useState } from 'react';
 import Filter from './components/Filter';
 import Items from './components/Items';
 import SearchBar from './components/Searchbar';
-import { ItemParams } from './interfaces/items';
+import { ItemParams, PaginationParams } from './interfaces/items';
 import { useMutation } from 'react-query';
 import { apiRequest } from './utils';
 
 function App() {
   const [state, setState] = useState({
     items: [] as ItemParams[],
-    totalItems: 0,
+    pagination: {
+      totalPages: 0,
+      currentPage: 1,
+      next: false,
+      prev: false,
+    } as PaginationParams,
   });
   const [searchTerm, setSearchTerm] = useState('');
 
@@ -21,11 +26,15 @@ function App() {
   useEffect(() => {
     if (data) {
       setState({
-        items: data.data?.items,
-        totalItems: data.data?.totalItems,
+        ...data?.data,
+        pagination: {
+          ...state.pagination,
+          totalPages: data?.data?.totalPages,
+          currentPage: data?.data?.currentPage,
+        },
       });
     }
-  }, [data]);
+  }, [data, state]);
 
   const handleChange = async (e: React.FormEvent<HTMLInputElement>) => {
     const { value } = e.currentTarget;
@@ -36,7 +45,12 @@ function App() {
     } else {
       setState({
         items: [],
-        totalItems: 0,
+        pagination: {
+          totalPages: 0,
+          currentPage: 1,
+          next: false,
+          prev: false,
+        },
       });
       setSearchTerm('');
     }

@@ -40,11 +40,18 @@ export class BookController {
             categories: volumeInfo.categories,
             averageRating: volumeInfo?.averageRating,
             ratingsCount: volumeInfo?.ratingsCount,
+            pageCount: volumeInfo?.pageCount,
+            publisher: volumeInfo?.publisher,
+            publishedDate: volumeInfo?.publishedDate,
           },
         };
       });
 
-      return res.status(status).json({ items, totalItems });
+      return res.status(status).json({
+        items,
+        totalPages: Math.ceil(totalItems / limit),
+        currentPage: offset / limit + 1,
+      });
     } catch (error) {
       const { message, status } = error as defaultErrorDto;
       return res.status(status || 500).json({ message });

@@ -6,16 +6,12 @@ function Ratings({ ratingsCount }: RatingsParams) {
   const remainingStars = ratingsCount ? Math.floor(5 - ratingsCount) : 4;
   return (
     <div className="flex">
-      {Array(ratingsCount)
-        .fill(null)
-        .map((_, i) => (
-          <Star key={i} fill="orange" color="white" />
-        ))}
-      {Array(remainingStars)
-        .fill(null)
-        .map((_, i) => (
-          <Star key={i} fill="gray" color="white" />
-        ))}
+      {[...Array(ratingsCount)].map((_, i) => (
+        <Star key={i} fill="orange" color="white" />
+      ))}
+      {[...Array(remainingStars)].map((_, i) => (
+        <Star key={i} fill="gray" color="white" />
+      ))}
     </div>
   );
 }
