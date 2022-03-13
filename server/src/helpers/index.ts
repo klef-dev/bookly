@@ -12,7 +12,7 @@ const log = logger({
 // configure google book api
 const googleBookApi = axios.create({
   baseURL: 'https://www.googleapis.com/books/v1',
-  timeout: 5000,
+  timeout: 10000,
 });
 
 export { log, googleBookApi };

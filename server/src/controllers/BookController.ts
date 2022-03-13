@@ -47,7 +47,7 @@ export class BookController {
       return res.status(status).json({ items, totalItems });
     } catch (error) {
       const { message, status } = error as defaultErrorDto;
-      return res.status(status).json({ message });
+      return res.status(status || 500).json({ message });
     }
   };
 }

@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
 import Item from './Item';
 import { ItemsProps } from '../interfaces/items';
-import { ChevronLeft, ChevronRight } from 'react-feather';
+// import { ChevronLeft, ChevronRight } from 'react-feather';
 
-const Items = ({ items, pagination }: ItemsProps) => {
-  const [page, setPage] = useState(1);
-  const pageForward = () => {
-    setPage(pagination.pageNum + 1);
-  };
+const Items = ({ items }: ItemsProps) => {
+  // const [page, setPage] = useState(1);
+  // const pageForward = () => {
+  //   setPage(pagination.pageNum + 1);
+  // };
 
-  const pageBackward = () => {
-    setPage(pagination.pageNum - 1);
-  };
+  // const pageBackward = () => {
+  //   setPage(pagination.pageNum - 1);
+  // };
 
   return (
     <div className="bg-white p-4">
@@ -24,7 +24,7 @@ const Items = ({ items, pagination }: ItemsProps) => {
           </p>
         )}
       </div>
-      <div>
+      {/* <div>
         <div className="flex list-none justify-center items-center mt-5">
           <button
             onClick={() => pageBackward()}
@@ -44,7 +44,7 @@ const Items = ({ items, pagination }: ItemsProps) => {
             <ChevronRight />
           </button>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

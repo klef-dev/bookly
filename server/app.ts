@@ -29,7 +29,7 @@ class App {
     this.app.use(cors());
     const cache = apicache.middleware;
 
-    this.app.use(cache('5 minutes'));
+    // this.app.use(cache('5 minutes'));
 
     const PORT = process.env.PORT || 3333;
 

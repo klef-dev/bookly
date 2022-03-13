@@ -1,17 +1,19 @@
 export interface ItemParams {
-  title: string;
-  image: string;
-  ratings: number;
-  pages: number;
-  year: string;
-  publisher: string;
-  authors: string;
-  categories: string;
-  description: string;
+  volumeInfo: {
+    title: string;
+    authors: string[];
+    description: string;
+    imageLinks: {
+      thumbnail: string;
+    };
+    categories: string[];
+    averageRating?: number;
+    ratingsCount?: number;
+  };
 }
 
 export interface RatingsParams {
-  ratings: number;
+  ratingsCount?: number;
 }
 
 export interface PaginationParams {
@@ -23,16 +25,28 @@ export interface PaginationParams {
 // COMPONENT PROPS
 export interface ItemsProps {
   items: ItemParams[];
-  pagination: PaginationParams;
+  // pagination: PaginationParams;
 }
 
 export interface ItemProps {
   item: ItemParams;
 }
 
+export interface SearchProps {
+  onSearch: (e: React.FormEvent<HTMLInputElement>) => void;
+}
+
 export interface FilterProps {
-  initialItems: ItemParams[];
-  updateItems: (data: ItemParams[]) => ItemParams[];
+  updateItems: ({
+    items,
+    totalItems,
+  }: {
+    items: ItemParams[];
+    totalItems: number;
+  }) => {
+    items: ItemParams[];
+    totalItems: number;
+  };
 }
 
 export interface PaginationProps {

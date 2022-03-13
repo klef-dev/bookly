@@ -2,11 +2,11 @@ import React from 'react';
 import { Star } from 'react-feather';
 import { RatingsParams } from '../interfaces/items';
 
-function Ratings({ ratings }: RatingsParams) {
-  const remainingStars = Math.floor(5 - ratings);
+function Ratings({ ratingsCount }: RatingsParams) {
+  const remainingStars = ratingsCount ? Math.floor(5 - ratingsCount) : 5;
   return (
     <div className="flex">
-      {Array(ratings)
+      {Array(ratingsCount)
         .fill(null)
         .map((_, i) => (
           <Star key={i} fill="orange" color="white" />

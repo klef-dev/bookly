@@ -1,17 +1,10 @@
 import React from 'react';
 import { FilterProps } from '../interfaces/items';
 
-function Filter({ initialItems, updateItems }: FilterProps) {
+function Filter({ updateItems }: FilterProps) {
   const handleChange = (e: React.FormEvent<HTMLSelectElement>) => {
     const { value } = e.currentTarget;
-    if (value) {
-      const filtered = initialItems.filter(
-        (item) => item.ratings === Number(value)
-      );
-      updateItems(filtered);
-    } else {
-      updateItems(initialItems);
-    }
+    console.log(value);
   };
   return (
     <div className="md:p-2 mb-4">
