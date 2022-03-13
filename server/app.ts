@@ -2,11 +2,13 @@ import dotenv from 'dotenv';
 import morgan from 'morgan';
 import helmet from 'helmet';
 import cors from 'cors';
-import express from 'express';
+import express, { Response } from 'express';
 import apicache from 'apicache';
+import swaggerUI from 'swagger-ui-express';
 
 import { Routes } from './src/routes/api';
 import { log } from './src/helpers';
+import docs from './src/docs';
 
 dotenv.config();
 
@@ -34,6 +36,11 @@ class App {
     const PORT = process.env.PORT || 3333;
 
     this.app.use('/api/v1', this.routePrv.routes());
+    this.app.use('/docs', swaggerUI.serve, swaggerUI.setup(docs));
+
+    this.app.use('/', (_, res: Response) => {
+      res.redirect(301, '/docs');
+    });
 
     this.app.listen(PORT, () => {
       log.info(`Serving on http://localhost:${PORT} 🚀`);

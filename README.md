@@ -9,11 +9,10 @@
 - Then you have to `cd bookly`
 
 - Run the command below and make any changes necessary in that file
-
-```sh
-  $ cd server 
-  $ cp .env.example .env
-```
+  ```sh
+    $ cd server
+    $ cp .env.example .env
+  ```
 
 - If you don't have yarn installed click the following link https://classic.yarnpkg.com/en/docs/install.
 
