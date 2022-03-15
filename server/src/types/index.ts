@@ -1,6 +1,8 @@
 export interface defaultErrorDto {
-  status: number;
   message: string;
+  response?: {
+    status: number;
+  };
 }
 
 export interface responseDto {

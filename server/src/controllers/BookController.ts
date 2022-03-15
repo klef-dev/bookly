@@ -16,7 +16,13 @@ export class BookController {
       query,
       limit = 10,
       offset = 0,
-    }: { query: string; limit: number; offset: number } = req.query as any;
+      key = process.env.GOOGLE_BOOK_API_KEY || '',
+    }: {
+      query: string;
+      limit: number;
+      offset: number;
+      key: string;
+    } = req.query as any;
 
     try {
       let {
@@ -24,29 +30,31 @@ export class BookController {
         status,
       }: responseDto = await googleBookApi.get(
         `/volumes?q=${query}
-        &maxResults=${limit}&startIndex=${offset}&printType=books&orderBy=relevance&key=${
-          process.env.GOOGLE_BOOK_API_KEY || ''
-        }`
+        &maxResults=${limit}&startIndex=${offset}&printType=books&orderBy=relevance&key=${key}`
       );
 
-      items = items.map((item) => {
-        const { volumeInfo } = item;
-        return {
-          volumeInfo: {
-            title: volumeInfo.title,
-            authors: volumeInfo.authors,
-            description: volumeInfo.description,
-            imageLinks: { thumbnail: volumeInfo.imageLinks?.thumbnail },
-            categories: volumeInfo.categories,
-            averageRating: volumeInfo?.averageRating,
-            ratingsCount: volumeInfo?.ratingsCount,
-            pageCount: volumeInfo?.pageCount,
-            publisher: volumeInfo?.publisher,
-            publishedDate: volumeInfo?.publishedDate,
-            previewLink: volumeInfo?.previewLink,
-          },
-        };
-      });
+      if (items && items.length) {
+        items = items.map((item) => {
+          const { volumeInfo } = item;
+          return {
+            volumeInfo: {
+              title: volumeInfo.title,
+              authors: volumeInfo.authors,
+              description: volumeInfo.description,
+              imageLinks: { thumbnail: volumeInfo.imageLinks?.thumbnail },
+              categories: volumeInfo.categories,
+              averageRating: volumeInfo?.averageRating,
+              ratingsCount: volumeInfo?.ratingsCount,
+              pageCount: volumeInfo?.pageCount,
+              publisher: volumeInfo?.publisher,
+              publishedDate: volumeInfo?.publishedDate,
+              previewLink: volumeInfo?.previewLink,
+            },
+          };
+        });
+      } else {
+        items = [];
+      }
 
       return res.status(status).json({
         items,
@@ -54,8 +62,8 @@ export class BookController {
         currentPage: offset / limit + 1,
       });
     } catch (error) {
-      const { message, status } = error as defaultErrorDto;
-      return res.status(status || 500).json({ message });
+      const { message, response } = error as defaultErrorDto;
+      return res.status(response?.status || 500).json({ message });
     }
   };
 }
