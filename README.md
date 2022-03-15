@@ -33,4 +33,10 @@ After copying the .env file, run the command below you need to go back to the ro
 
   This serves the api by default on [http://localhost:3333](http://localhost:3333/api/v1) and the client side on [http://localhost:3000](http://localhost:3000/).
 
+- To run integration test for server side, run 👇🏼
+  ```sh
+    $ cd server
+    $ yarn test
+  ```
+
   Happy coding 👨🏼‍💻

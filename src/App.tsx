@@ -85,7 +85,7 @@ function App() {
   return (
     <div className="md:flex md:justify-between pt-28 pb-20 px-28 h-full">
       <div className="md:mr-5 md:w-5/12">
-        <Filter handleFiltering={handleFiltering} />
+        <Filter handleFiltering={handleFiltering} disabled={!state.items.length}/>
       </div>
       <div className="w-full bg-white shadow-xl">
         <SearchBar onSearch={handleChange} />

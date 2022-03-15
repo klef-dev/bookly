@@ -53,6 +53,7 @@ export interface SearchProps {
 
 export interface FilterProps {
   handleFiltering: (e: React.FormEvent<HTMLSelectElement>) => void;
+  disabled: boolean;
 }
 
 export interface PaginationProps {
