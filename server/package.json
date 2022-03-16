@@ -1,13 +1,13 @@
 {
-	"name": "spotifiness",
+	"name": "bookly-api",
 	"version": "1.0.0",
-	"description": "Spotify API integration",
+	"description": "Bookly API",
 	"main": "./dist/src/index.js",
 	"scripts": {
 		"start": "node ./dist/src/index.js",
 		"dev": "nodemon ./src/index.ts",
 		"build": "tsc -p .",
-		"test": "jest --watch --runInBand --detectOpenHandles"
+		"test": "jest --forceExit --detectOpenHandles"
 	},
 	"license": "MIT",
 	"dependencies": {

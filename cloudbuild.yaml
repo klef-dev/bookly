@@ -16,6 +16,9 @@ steps:
   - name: 'gcr.io/cloud-builders/yarn'
     args: ['build']
     dir: 'server'
+  - name: 'gcr.io/cloud-builders/yarn'
+    args: ['test']
+    dir: 'server'
   - name: 'gcr.io/cloud-builders/gcloud'
     args: ['app', 'deploy', 'api.yaml']
     dir: 'server'
