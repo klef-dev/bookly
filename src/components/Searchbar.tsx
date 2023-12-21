@@ -6,7 +6,7 @@ function SearchBar({ onSearch }: SearchProps) {
       <input
         className="w-full p-3 "
         type="text"
-        placeholder="search with me..."
+        placeholder="Start searching..."
         onChange={onSearch}
       />
     </div>
